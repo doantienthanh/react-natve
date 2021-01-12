@@ -15,5 +15,4 @@ export const reducer = (state = initialState, action) => {
       return state;
   }
 };
-
 export const store = createStore(reducer);

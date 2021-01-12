@@ -2,9 +2,9 @@
  * @format
  */
 import { Navigation } from 'react-native-navigation';
-import Page from './components/smartPhones/Page';
+import index from './src/login/index';
 
-Navigation.registerComponent('com.myApp.WelcomeScreen', () => Page);
+Navigation.registerComponent('com.myApp.WelcomeScreen', () => index);
 
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setRoot({
