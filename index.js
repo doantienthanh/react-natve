@@ -2,8 +2,7 @@
  * @format
  */
 import { Navigation } from 'react-native-navigation';
-import index from './src/login/index';
-
+import index from './src/login/screen/Login';
 Navigation.registerComponent('com.myApp.WelcomeScreen', () => index);
 
 Navigation.events().registerAppLaunchedListener(() => {
