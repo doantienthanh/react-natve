@@ -1,13 +1,22 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {defaultColors} from '../../themes/Color';
 const Login=()=>{
     return(
-        <View>
-            <Text>Login</Text>
-        </View>
+        <ScrollView  style={styles.bodyLogin}>
+            <View>
+            <Text>Thanh</Text>
+            </View>
+        </ScrollView>
     )
-}
+};
 
- const styles=StyleSheet.create({});
+ const styles=StyleSheet.create({
+     bodyLogin:{
+        backgroundColor:defaultColors.wheat,
+        width:'100%',
+        height:200,
+     },
+
+ });
 export default Login;
