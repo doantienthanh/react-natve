@@ -13,4 +13,4 @@ const InputRegister = () => {
   );
 };
 
-        export default InputRegister;
+export default InputRegister;

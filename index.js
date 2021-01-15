@@ -3,7 +3,9 @@
  */
 import { Navigation } from 'react-native-navigation';
 import index from './src/login/screen/Login';
-Navigation.registerComponent('com.myApp.WelcomeScreen', () => index);
+import { registerScreens } from './src/login/navigation/RegisterScreen';
+// Navigation.registerComponent('com.myApp.WelcomeScreen', () => index);
+registerScreens();
 
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setRoot({
@@ -12,7 +14,7 @@ Navigation.events().registerAppLaunchedListener(() => {
         children: [
           {
             component: {
-              name: 'com.myApp.WelcomeScreen',
+              name: 'Login',
             },
           },
         ],

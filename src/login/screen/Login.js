@@ -3,27 +3,24 @@ import { View, TextInput, Text, StyleSheet, Image, TouchableOpacity } from 'reac
 import { defaultColors } from '../../elements/Colors';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Navigation } from 'react-native-navigation';
-import axios from 'axios';
 import ToolBar from '../components/ToolBar';
 import Register from './Register';
 import ForgotPassword from './ForgotPassword';
+import * as loginActions from '../redux/Auth/Login/Action';
+import { useDispatch } from 'react-redux';
+
 const Login = (props) => {
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
 
-  const login = () => {
-    axios
-      .post('https://proxibox-pharma-api-staging.enouvo.com/api/v1/auth/login', {
-        email: email,
-        password: password,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+  const onLogin = () => {
+    const data = {
+      email: email,
+      password: password,
+    };
+    return data;
   };
+  const dispatch = useDispatch();
   return (
     <View style={styles.bodyLogin}>
       <View style={styles.toolbar}>
@@ -53,7 +50,13 @@ const Login = (props) => {
           />
           <Icon name="eye-slash" style={styles.iconEye} />
           <View style={styles.bottomLogin}>
-            <TouchableOpacity style={styles.btnLogin} onPress={() => login()}>
+            <TouchableOpacity
+              style={styles.btnLogin}
+              onPress={() => {
+                dispatch(loginActions.login(onLogin()));
+                // action  
+              }}
+            >
               <Text style={styles.txtLogin}>Login</Text>
             </TouchableOpacity>
             <View style={styles.bottomForgot}>
@@ -62,7 +65,7 @@ const Login = (props) => {
                 onPress={() =>
                   Navigation.push(props.componentId, {
                     component: {
-                      name: 'register',
+                      name: 'Register',
                     },
                   })
                 }
@@ -74,7 +77,7 @@ const Login = (props) => {
                 onPress={() =>
                   Navigation.push(props.componentId, {
                     component: {
-                      name: 'forgotPassword',
+                      name: 'ForgotPassword',
                     },
                   })
                 }
@@ -88,9 +91,9 @@ const Login = (props) => {
     </View>
   );
 };
-
-Navigation.registerComponent('register', () => Register);
-Navigation.registerComponent('forgotPassword', () => ForgotPassword);
+Navigation.registerComponent('Register', () => Register);
+Navigation.registerComponent('ForgotPassword', () => ForgotPassword);
+Navigation.registerComponent('Login', () => Login);
 
 const styles = StyleSheet.create({
   bodyLogin: {
@@ -171,4 +174,5 @@ const styles = StyleSheet.create({
     marginRight: 50,
   },
 });
+
 export default Login;
